@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<title>Angular js sample</title>
+	</head>
+	<body ng-init="names=['john','smith','jack','harry potter']">
+		<label>Name:</label>
+		<input type="text" ng-model="name" /> {{ name }}
+		<br />
+		<ul>
+			<li ng-repeat="personName in names">{{ personName }}</li>
+		</ul>
+		<script src="js/angular.min.js"></script>
+	</body>
+</html>

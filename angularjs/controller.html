@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<title>Angular js sample</title>
+		<script type="text/javascript">
+			function simpleController($scope) {
+				$scope.customers = [
+					{ name: 'john smith', city: 'Phenoix'},
+					{ name: 'john doe', city: 'New York'},
+					{ name: 'Dave', city: 'San Fransisco'},
+					{ name: 'Harry', city: 'Bangalore'}
+				];
+			}
+		</script>
+	</head>
+	<body>
+		<div ng-controller="simpleController">
+			<label>Name:</label>
+			<input type="text" ng-model="name" /> {{ name }}
+			<br />		
+			<ul>
+				<li ng-repeat="cust in customers | filter:name | orderBy:'city'">{{ cust.name | uppercase }} - {{ cust.city | lowercase }}</li>
+			</ul>
+		</div>
+		<script src="js/angular.min.js"></script>
+	</body>
+</html>

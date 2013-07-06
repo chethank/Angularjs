@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+	<head>
+		<title>Angular js sample</title>
+	</head>
+	<body>
+		<div ng-controller="simpleController">
+			<label>Name:</label>
+			<input type="text" ng-model="name" /> {{ name }}
+			<br />		
+			<ul>
+				<li ng-repeat="cust in customers | filter:name | orderBy:'city'">{{ cust.name | uppercase }} - {{ cust.city | lowercase }}</li>
+			</ul>
+		</div>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript">
+			var demoApp = angular.module('demoApp',[]);
+			
+			/* There are 3 ways of defining a controller, as shown below */
+			/*
+			// First method of defining a controller
+			function simpleController($scope) {
+				$scope.customers = [
+					{ name: 'john smith', city: 'Phenoix'},
+					{ name: 'john doe', city: 'New York'},
+					{ name: 'Dave', city: 'San Fransisco'},
+					{ name: 'Harry', city: 'Bangalore'}
+				];
+			}
+			demoApp.controller('simpleController', simpleController);
+			*/
+			
+			/*
+			// Second method of defining a controller
+			demoApp.controller('simpleController', function ($scope) {
+				$scope.customers = [
+					{ name: 'john smith', city: 'Phenoix'},
+					{ name: 'john doe', city: 'New York'},
+					{ name: 'Dave', city: 'San Fransisco'},
+					{ name: 'Harry', city: 'Bangalore'}
+				];
+			});
+			*/
+			
+			// Third method of defining a controller
+			var controllers = {};
+			controllers.simpleController = function ($scope) {
+				$scope.customers = [
+					{ name: 'john smith', city: 'Phenoix'},
+					{ name: 'john doe', city: 'New York'},
+					{ name: 'Dave', city: 'San Fransisco'},
+					{ name: 'Harry', city: 'Bangalore'}
+				];
+			};
+			demoApp.controller(controllers);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="contactsApp">
+	<head>
+		<title>AngularJS example 1</title>
+		<link rel="stylesheet" href="css/main.css" />
+	</head>
+	<body>
+		<section id="wrapper">
+			<header>
+				<H1>Contact manager application example using AngularJS</H1>
+			</header>
+			
+			<section id="content" ng-controller="contactsController">
+				<section class="add-contact-details">
+					<FIELDSET>
+						<LEGEND><b>Personal Information</b></LEGEND>
+						
+						<label>Name:</label>
+						<input type="text" ng-model="newContact.name" />
+						<label>Email:</label>
+						<input type="text" ng-model="newContact.email" />
+						<label>Phone No:</label>
+						<input type="text" ng-model="newContact.phone" />
+						
+						<button ng-click="addContact()">Save</button>
+					</FIELDSET>
+				</section>
+				
+				<section class="contact-details">
+					<table>
+						<caption>Contacts</caption>
+						<thead>
+							<tr>
+								<th>Sl no.</th>
+								<th>Name</th>
+								<th>Email ID</th>
+								<th>Phone No.</th>
+								<th>Delete</th>
+							</tr>
+						</thead>	
+						<tbody>
+							<tr ng-repeat="contact in contacts">
+								<td>1</td>
+								<td>{{ contact.name }}</td>
+								<td>{{ contact.email }}</td>
+								<td>{{ contact.phone }}</td>
+								<td><a href="javascript:void(0)">X</a></td>
+							</tr>							
+							<tr>
+								<td>2</td>
+								<td>{{ newContact.name }}</td>
+								<td>{{ newContact.email }}</td>
+								<td>{{ newContact.phone }}</td>
+								<td><a href="javascript:void(0)">X</a></td>
+							</tr>	
+						</tbody>
+					</table>
+				</section>
+			</section>
+			
+			<footer>
+				NO!!! Copyright &copy; :)
+			</footer>
+		</section>
+		<script src="js/angular.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var contactsApp = angular.module('contactsApp',[]);
+			
+			contactsApp.controller('contactsController', function ($scope) {
+				$scope.contacts = [
+					{ name: 'john smith', email: 'Phenoix@test.com', phone: '1234567890' },
+					{ name: 'john doe', email: 'NewYork@test.com', phone: '1234567891' },
+					{ name: 'Dave', email: 'SanFransisco@test.com', phone: '1234567892' },
+					{ name: 'Harry', email: 'Bangalore@test.com', phone: '1234567893' }
+				];
+				
+				$scope.addContact = function (){
+					$scope.contacts.push(
+						{ name: $scope.newContact.name, email: $scope.newContact.email, phone: $scope.newContact.phone }
+					)
+					$scope.newContact.name = '';
+					$scope.newContact.email = '';
+					$scope.newContact.phone = '';
+				}
+			});
+			
+		</script>
+	</body>
+</html>

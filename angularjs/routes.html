@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+	<head>
+		<title>Angular js sample</title>
+	</head>
+	<body>
+		<!-- Place holder for the views -->
+		<div>
+			<div ng-view=""></div>
+		</div>
+		
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript">
+			var demoApp = angular.module('demoApp',[]);
+			
+			demoApp.config(function($routeProvider){
+				$routeProvider
+					.when('/',
+						{
+							controller: 'simpleController',
+							templateUrl: 'Partials/View1.html'
+						}
+					)
+					.when('/View2',
+						{
+							controller: 'simpleController',
+							templateUrl: 'Partials/View2.html'
+						}					
+					)
+					.otherwise({redirectTo: '/'});			
+			});
+			
+			demoApp.controller('simpleController', function ($scope) {
+				$scope.customers = [
+					{ name: 'john smith', city: 'Phenoix' },
+					{ name: 'john doe', city: 'New York' },
+					{ name: 'Dave', city: 'San Fransisco' },
+					{ name: 'Harry', city: 'Bangalore' }
+				];
+				
+				$scope.addCustomer = function (){
+					$scope.customers.push(
+						{ name: $scope.newCustomer.name, city: $scope.newCustomer.city }
+					)
+				}
+			});
+			
+		</script>
+	</body>
+</html>
